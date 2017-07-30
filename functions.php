@@ -30,7 +30,7 @@ function get_test($id) {
         return false;
     }
 
-    $file = $_SERVER['DOCUMENT_ROOT'] . $test_path[$id]['path'];
+    $file = $test_path[$id]['path'];
     $test = json_decode(file_get_contents($file), true);
 
     return $test;

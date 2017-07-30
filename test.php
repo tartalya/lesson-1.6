@@ -1,7 +1,7 @@
 <?php
 
 require_once 'functions.php';
-$uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
+$uploads_dir = 'uploads';
 
 
 if ($_POST['send']) {
