@@ -34,7 +34,7 @@ if ($_POST['send']) {
 
 
 
-    echo '<img src="/sert.php?string=' . $sert_string . '">';
+    echo '<img src="sert.php?string=' . $sert_string . '">';
     die();
 }
 
