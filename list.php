@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 $test_primer = array(
     
         array ('questions' => 'Сколько будет 2х2', 
@@ -15,13 +15,29 @@ $test_primer = array(
             ));
 
         
-        // 'Сколько будет 2х9'
+       
         echo json_encode($test_primer);
         
     echo '<pre>';
   print_r($test_primer);
-
+*/
 ?>
 
-<a href="/index.php?id=test1393301">Первый тестовый тест на попробовать</a>
+
+<?php
+
+$result = json_decode(file_get_contents('list.db'), true);
+
+foreach ($result as $key => $value) {
+ 
+    
+    echo '<a href="test.php?id=' . $key . '">' . $value['name'] . '</a>';
+    echo '<br><br>';
+    
+}
+
+//echo '<pre>';
+//print_r($res);
+
+?>
 

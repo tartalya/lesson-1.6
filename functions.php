@@ -11,6 +11,8 @@ function draw_admin_form() {
 <br>
 <input name="testfile" type="file" />
 <br>
+<input type="text" name="testname" placeholder="Введите название теста">
+<br>
 <input type="submit" value="Отправить">
 </form>
 

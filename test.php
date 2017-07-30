@@ -2,11 +2,18 @@
 
 $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
 
+
+
+
 if ($_POST['send']) {
     
     
     echo 'результат получен';
     print_r($_POST);
+    
+    
+    
+    var_dump($test);
     die();
     
 }
@@ -19,14 +26,22 @@ if (!isset($_GET['id']))  {
     die();
 }
 
-if (!fopen($uploads_dir . '/' .$_GET['id'] . '.json', 'r')) {
+$test_path = json_decode(file_get_contents('list.db'), true);
+
+
+
+if (!$test_path[$_GET['id']]['path']) {
     
     http_response_code(404);
     echo 'Такой тест не найден';
     die();
+    
 }
 
-$file = $uploads_dir . '/' .$_GET['id'] . '.json';
+
+$file = $_SERVER['DOCUMENT_ROOT'] . $test_path[$_GET['id']]['path'];
+
+
 
 $test = json_decode(file_get_contents($file), true);
 
