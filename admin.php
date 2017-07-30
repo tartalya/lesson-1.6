@@ -25,7 +25,7 @@ if ($_FILES['testfile']) {
 
             echo 'Файл успешно загружен<br>';
             echo 'Вы будете перенаправлены на страницу со списком тестов через 3 секунды';
-            echo '<meta http-equiv="refresh" content="3;URL=/list.php" />'; // именно так, так как такой вариант работает 
+            echo '<meta http-equiv="refresh" content="3;URL=list.php" />'; // именно так, так как такой вариант работает 
             
             
 

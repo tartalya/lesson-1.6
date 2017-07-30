@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0;URL=/list.php" />
+<meta http-equiv="refresh" content="0;URL=list.php" />
