@@ -1,55 +1,60 @@
 <?php
 
+require_once 'functions.php';
 $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
 
 
-
-
 if ($_POST['send']) {
-    
-    
-    echo 'результат получен';
-    print_r($_POST);
-    
-    
-    
-    var_dump($test);
+
+    $my_result = 0;
+    $test = get_test($_POST['testid']);
+
+    for ($i = 0; $i < count($test); $i++) {
+
+        //echo '<b>' . $test[$i]['right'] . '<br><br>';
+
+        if ($test[$i]['right'] == $_POST[$i]) {
+
+            $my_result = $my_result + 5;
+        } else {
+
+            $my_result = $my_result + 2;
+        }
+    }
+
+
+    $finish_result = round($my_result / count($test));
+
+    echo 'Ваша оценка за прохождение теста ' . $finish_result;
+
+
     die();
-    
 }
 
 
-if (!isset($_GET['id']))  {
-    
+
+
+if (!isset($_GET['id'])) {
+
     http_response_code(404);
     echo '404 страница не найдена';
     die();
 }
 
-$test_path = json_decode(file_get_contents('list.db'), true);
+if (!get_test($_GET['id'])) {
 
-
-
-if (!$test_path[$_GET['id']]['path']) {
-    
     http_response_code(404);
-    echo 'Такой тест не найден';
+    echo '404 нет такого теста';
     die();
-    
 }
 
 
-$file = $_SERVER['DOCUMENT_ROOT'] . $test_path[$_GET['id']]['path'];
+$test = get_test($_GET['id']);
 
 
 
-$test = json_decode(file_get_contents($file), true);
-
-//echo '<pre>';
-//var_dump($test);
 
 include'template.php';
-
 ?>
 
 
