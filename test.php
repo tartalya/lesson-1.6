@@ -25,9 +25,16 @@ if ($_POST['send']) {
 
     $finish_result = round($my_result / count($test));
 
-    echo 'Ваша оценка за прохождение теста ' . $finish_result;
+    //echo 'Здравствуйте ' . $_POST['username'];
+    //echo '<br>';
+    //echo 'Ваша оценка за прохождение теста ' . $finish_result;
+
+    $sert_string = 'Выдано ' . $_POST['username']
+            . ' c оценкой ' . $finish_result;
 
 
+
+    echo '<img src="/sert.php?string=' . $sert_string . '">';
     die();
 }
 
@@ -50,8 +57,6 @@ if (!get_test($_GET['id'])) {
 
 
 $test = get_test($_GET['id']);
-
-
 
 
 include'template.php';

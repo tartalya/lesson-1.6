@@ -36,10 +36,10 @@ function get_test($id) {
     return $test;
 }
 
-function get_test_name() {
+function get_test_name($id) {
 
     $test_path = json_decode(file_get_contents('list.db'), true);
-    $test_name = $test_path[$_GET['id']]['name'];
+    $test_name = $test_path[$id]['name'];
 
     return $test_name;
 }
