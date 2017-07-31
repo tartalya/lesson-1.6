@@ -21,4 +21,11 @@ if ($_POST['submit']) {
 }
 
 include'templates/login.php';
+
+
+
+// too memory 
+// ini_set("session.gc_maxlifetime",10800) ;
+// session_start();
+
 ?>
