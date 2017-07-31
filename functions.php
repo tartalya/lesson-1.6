@@ -43,4 +43,40 @@ function get_test_name($id) {
 
     return $test_name;
 }
+
+function get_users() {
+    
+    
+    $users = json_decode(file_get_contents('login.json'), true);
+    
+    if ($users) {
+        
+        return $users;
+    }
+    
+    return false;
+}
+
+function have_user($login) {
+    
+    $users = json_decode(file_get_contents('login.json'), true);
+    
+    
+    if ($users) {
+        
+        foreach ($users as $value) {
+           
+                if ($login == $value['login']) {
+                
+                return true;
+            }
+                
+            
+           
+        }
+        
+    }
+    return false;
+}
+
 ?>
