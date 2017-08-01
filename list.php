@@ -26,6 +26,8 @@
 
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 if (!json_decode(file_get_contents('list.db'), true)) {
 
     echo 'В базе нет ни одного теста';
