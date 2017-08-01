@@ -1,10 +1,10 @@
 [
 {
-    "id":"0", "name":"Ваше Величество", "login":"admin", "password":"2a7584550d290e3f68472c9737185cdd", "role":"admin"    
+    "id":0, "name":"Ваше Величество", "login":"admin", "password":"2a7584550d290e3f68472c9737185cdd", "role":"admin", "bad_login_count":0, "passkey":""    
 },
 
 {
-    "id":"1", "name":"Нейромонах Феофан", "login":"feofan", "password":"md5", "role":"user"
+    "id":1, "name":"Нейромонах Феофан", "login":"feofan", "password":"md5", "role":"user", "bad_login_count":"0", "passkey":""
     
 }
 ]
