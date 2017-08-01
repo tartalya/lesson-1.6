@@ -4,7 +4,7 @@
 },
 
 {
-    "id":1, "name":"Нейромонах Феофан", "login":"feofan", "password":"md5", "role":"user", "bad_login_count":"0", "passkey":""
+    "id":1, "name":"Нейромонах Феофан", "login":"feofan", "password":"md5", "role":"user", "bad_login_count":0, "passkey":""
     
 }
 ]

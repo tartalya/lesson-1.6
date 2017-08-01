@@ -45,38 +45,76 @@ function get_test_name($id) {
 }
 
 function get_users() {
-    
-    
+
+
     $users = json_decode(file_get_contents('login.json'), true);
-    
+
     if ($users) {
-        
+
         return $users;
     }
-    
+
     return false;
 }
 
 function have_user($login) {
-    
+
     $users = json_decode(file_get_contents('login.json'), true);
-    
-    
+
+
     if ($users) {
-        
+
         foreach ($users as $value) {
-           
-                if ($login == $value['login']) {
-                
+
+            if ($login == $value['login']) {
+
                 return true;
             }
-                
-            
-           
         }
-        
     }
     return false;
 }
 
+class user {
+
+    
+    function __construct() {
+        
+        if ($users = json_decode(file_get_contents('login.json'), true)) {
+        $this->users = $users;
+        }
+        else {
+            $this->users = array();
+        }
+        
+    }
+    
+   private $users;
+                  
+    
+    function start_auth($login, $md5_password) {
+        
+        
+        
+    }
+
+    function is_admin() {
+        
+    }
+
+    
+    function exist($login) {
+        
+        foreach ($this->users as $value) {
+
+            if ($login == $value['login']) {
+
+                return true;
+            }
+        }
+   
+    return false;
+}
+    
+}
 ?>

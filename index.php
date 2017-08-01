@@ -3,11 +3,14 @@
 require_once 'functions.php';
 
 if ($_POST['submit']) {
+    
+    $user = new user();
 
-    if (have_user($_POST['login'])) {
-
+    //if (have_user($_POST['login'])) {
+    
+    if ($user->exist($_POST['login'])) {
         echo 'Такой пользователь существует'; //нужно проверить пароль
-    } else if (!have_user($_POST['login']) && (empty($_POST['password']))) {
+    } else if (!$user->exist($_POST['login']) && (empty($_POST['password']))) {
 
         echo 'Здравствуй гость ' . $_POST['login'];
     } else {
