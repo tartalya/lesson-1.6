@@ -77,34 +77,83 @@ function have_user($login) {
 
 class user {
 
-    
     function __construct() {
-        
+
         if ($users = json_decode(file_get_contents('login.json'), true)) {
-        $this->users = $users;
-        }
-        else {
+            $this->users = $users;
+        } else {
             $this->users = array();
         }
-        
     }
-    
-   private $users;
-                  
-    
-    function start_auth($login, $md5_password) {
+
+    private $users;
+    private $passkey;
+
+    function start_auth($login, $password, $expire = 0) {
+
         
         
-        
+        foreach ($this->users as $value) {
+
+
+            if ($login == $value['login'] && md5($password) == $value['password']) {
+
+                $this->passkey = $this->generate_passkey();
+
+                $this->users[$value['id']]['passkey'] = $this->passkey;
+                
+                
+                
+                setcookie('login', $value['login'], $expire);
+                setcookie('passkey', $this->passkey, $expire);
+                setcookie('user_id', $value['id'], $expire);
+
+                
+
+                file_put_contents('login.json', json_encode($this->users));
+                
+                
+
+                return TRUE;
+            }
+
+            return FALSE;
+        }
     }
 
     function is_admin() {
         
+        
+        
+        foreach ($this->users as $value) {
+            
+            echo '<pre>';
+            var_dump($this->users[0]['passkey']);
+            
+            var_dump($_COOKIE);
+            
+            if ($_COOKIE['passkey'] == $value['passkey'] && $value['role'] == 'admin') {
+                
+                return true;
+            }
+            
+        }
+        return false;
     }
 
-    
+    function generate_passkey($length = 25) {
+
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters_length = strlen($characters);
+        $random_string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $random_string .= $characters[rand(0, $characters_length - 1)];
+        }
+        return $random_string;
+    }
+
     function exist($login) {
-        
+
         foreach ($this->users as $value) {
 
             if ($login == $value['login']) {
@@ -112,9 +161,24 @@ class user {
                 return true;
             }
         }
-   
-    return false;
-}
+
+        return false;
+    }
+
+    function is_auth($login, $passkey) {
+        
+        foreach ($this->users as $value) {
+
+            if ($login == $value['login'] && $passkey == $value['passkey']) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+        
+    
     
 }
 ?>

@@ -1,21 +1,58 @@
 <?php
 
 require_once 'functions.php';
+$cookie_expire = 0;
+
+$user = new user();
+
+
+if ($_COOKIE['passkey'] && $_COOKIE['login']) {
+    
+    echo 'куки есть';
+    
+    if ($user->is_auth($_COOKIE['login'], $_COOKIE['passkey'])) {
+        
+        echo 'Вы уже авторизованы'; //тут сделать редирект куда нужно
+        die;
+    }
+    
+}
+
 
 if ($_POST['submit']) {
     
-    $user = new user();
-
-    //if (have_user($_POST['login'])) {
     
-    if ($user->exist($_POST['login'])) {
-        echo 'Такой пользователь существует'; //нужно проверить пароль
-    } else if (!$user->exist($_POST['login']) && (empty($_POST['password']))) {
+
+    
+    if ($user->exist($_POST['login']) && !empty($_POST['password'])) {
+        //echo 'Такой пользователь существует<br>'; 
+        if ($_POST['remember']) {
+            $cookie_expire = time()+10800;
+        }
+        
+        if ($user->start_auth($_POST['login'], $_POST['password'], $cookie_expire)) {
+            
+            //echo 'Успешная авторизация';
+            header('location: list.php');
+            // redirect to list.php
+        }
+        
+        else {
+            
+            $error_msg = 'Неверный логин или пароль';
+            include'templates/login.php';
+        }
+        
+        
+    } else if (!empty($_POST['login']) && !$user->exist($_POST['login']) && (empty($_POST['password']))) {
 
         echo 'Здравствуй гость ' . $_POST['login'];
+        setcookie('guest_name', $_POST['login']);
+        //redirect to list.php
+        
     } else {
 
-        echo 'Ошибка авторизации';
+        $error_msg =  'Ошибка авторизации';
         include'templates/login.php';
     }
 
@@ -25,10 +62,5 @@ if ($_POST['submit']) {
 
 include'templates/login.php';
 
-
-
-// too memory 
-// ini_set("session.gc_maxlifetime",10800) ;
-// session_start();
 
 ?>

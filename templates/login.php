@@ -64,6 +64,7 @@
 			    	</fieldset>
 			      	</form>
 			    </div>
+                    <center><?= $error_msg ?></center>
 			</div>
 		</div>
 	</div>
