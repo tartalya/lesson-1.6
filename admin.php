@@ -1,7 +1,7 @@
 <?php
 
 $uploads_dir = 'uploads';
-error_reporting(E_ALL & ~E_NOTICE);
+
 require_once 'functions.php';
 
 if ($_FILES['testfile']) {

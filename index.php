@@ -2,11 +2,12 @@
 
 require_once 'functions.php';
 $cookie_expire = 0;
+$error_msg = '';
 
 $user = new user();
 
 
-if ($_COOKIE['passkey'] && $_COOKIE['login']) {
+if (isset($_COOKIE['passkey'] )&& isset($_COOKIE['login'])) {
     
     echo 'куки есть';
     
@@ -19,7 +20,7 @@ if ($_COOKIE['passkey'] && $_COOKIE['login']) {
 }
 
 
-if ($_POST['submit']) {
+if (isset($_POST['submit'])) {
     
     
 

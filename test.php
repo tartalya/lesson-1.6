@@ -1,11 +1,11 @@
 <?php
 
 require_once 'functions.php';
-error_reporting(E_ALL & ~E_NOTICE);
+
 $uploads_dir = 'uploads';
 
 
-if ($_POST['send']) {
+if (isset($_POST['send'])) {
 
     $my_result = 0;
     $test = get_test($_POST['testid']);
