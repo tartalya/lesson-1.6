@@ -107,6 +107,7 @@ class user {
                 setcookie('login', $value['login'], $expire);
                 setcookie('passkey', $this->passkey, $expire);
                 setcookie('user_id', $value['id'], $expire);
+                setcookie('name', $value['name'], $expire);
 
                 
 

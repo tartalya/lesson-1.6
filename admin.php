@@ -4,7 +4,7 @@ $uploads_dir = 'uploads';
 
 require_once 'functions.php';
 
-if ($_FILES['testfile']) {
+if (isset($_FILES['testfile'])) {
 
     //var_dump($_FILES);
     $extension = explode('.', $_FILES['testfile']['name']);
